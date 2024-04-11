@@ -15,19 +15,24 @@
                     </ul>
 
                      <ul class="header-list list-unstyled d-flex align-items-center p-0 mb-0">
-                        <li>
-                            <RouterLink to="/">
-                                <i class="fa-solid fa-right-to-bracket"></i>
-                                Đăng nhập
-                            </RouterLink>
-                        </li>
-                        <li>
-                            <RouterLink to="/">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                Đăng ký
-                            </RouterLink>
-                        </li>
-                        <li>
+                        <ul
+                            class="header-list list-unstyled d-flex align-items-center p-0 mb-0"
+                            v-if="$store.state.auth.email === ''">
+                            <li>
+                                <RouterLink to="/auth">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                    Đăng nhập
+                                </RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="/auth/signup">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    Đăng ký
+                                </RouterLink>
+                            </li>
+                        </ul>
+
+                        <li v-else>
                             <button
                                 class="btn-signout"
                                 type="button">
