@@ -1,0 +1,11 @@
+<template>
+    <div>Signup</div>
+</template>
+
+<script>
+    export default {
+        name: 'auth-signup',
+        components: {}
+    }
+</script>
+
