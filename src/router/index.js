@@ -6,7 +6,7 @@ const routes = [
         component: () => import("../views/DashboardView.vue"),
         children: [
             {
-                path: '/',
+                path: '',
                 name: 'dashboard-main',
                 component: () => import("../components/dashboard/DashboardMain.vue")
             }
@@ -18,12 +18,12 @@ const routes = [
         component: () => import("../views/AuthView.vue"),
         children: [
             {
-                path: "/",
+                path: "",
                 name: 'signin',
                 component: () => import("../components/auth/AuthSignin.vue")
             },
             {
-                path: '/signup',
+                path: 'signup',
                 name: "signup",
                 component: () => import("../components/auth/AuthSignup.vue")
             }
