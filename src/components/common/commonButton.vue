@@ -12,8 +12,7 @@
         props: {
             title: String,
             full: Boolean
-        },
-        components: { }
+        }
     }
 </script>
 
