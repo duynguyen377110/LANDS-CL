@@ -16,9 +16,9 @@
             ref="passRef"
             @blur-event="passwordBlur"/>
 
-            <button
-                type="submit"
-                class="btn-signin btn-common btn btn-primary">Đăng nhập</button>
+            <CommonButton 
+            :title="'Đăng nhập'"
+            :full="true"/>
 
         <p class="sugget">
             Bạn chưa có tài khoản?
@@ -29,6 +29,7 @@
 
 <script>
     import CommonInput from "../common/CommonInput.vue";
+    import CommonButton from "../common/commonButton.vue";
     import useValidator from "../../hook/hook-validator";
 
     const blurEmail = useValidator(['required', 'email']);
@@ -37,7 +38,8 @@
     export default {
         name: 'auth-signin',
         components: {
-            CommonInput
+            CommonInput,
+            CommonButton
         },
         data() {
             return {
