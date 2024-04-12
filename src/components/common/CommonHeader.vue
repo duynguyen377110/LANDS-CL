@@ -9,9 +9,9 @@
                 </div>
                 <div class="col-9 d-flex align-items-center justify-content-between">
                     <ul class="header-list list-unstyled d-flex align-items-center p-0 mb-0">
-                        <li>
+                        <!-- <li>
                             <RouterLink to="/">Nguồn đất</RouterLink>
-                        </li>
+                        </li> -->
                     </ul>
 
                      <ul class="header-list list-unstyled d-flex align-items-center p-0 mb-0">
