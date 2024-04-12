@@ -67,7 +67,7 @@
                 inputPass.blur();
 
                 if(this.validEmail.status && this.validPass.status) {
-                    return null
+                    this.$router.push("/");
                 }
             }
         }
