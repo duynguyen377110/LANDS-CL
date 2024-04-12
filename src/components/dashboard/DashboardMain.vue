@@ -30,13 +30,64 @@
             <span class="sr-only">Next</span>
         </button>
     </div>
+
+    <div class="section-lands-product">
+        <div class="container">
+            <div class="row align-items-stretch">
+                <div
+                    class="col-12 col-md-4 col-lg-3 mb-5"
+                    v-for="(land) in lands" :key="land._id">
+                    <CommonLandCard :land="land"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 <script>
+    import CommonLandCard from "../common/CommonLandCard.vue";
+    import environment from "../../../environment.js";
+
+    let url = `${environment.url}${environment.product.all}`;
+
     export default {
         name: "dashboard-main",
-        components: {}
+        components: {
+            CommonLandCard
+        },
+        data() {
+            return {
+                lands: []
+            }
+        },
+        mounted() {
+            this.callApi();
+        },
+        methods: {
+            async callApi() {
+                let res = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+
+                if(!res.ok) throw new Error("Call api success");
+
+                let { status, metadata } = await res.json();
+                if(status) {
+                    let { products } = metadata;
+                    this.lands = products;
+                }
+            }
+        },
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+    .section-lands-product {
+        background-color: #f8f8f8;
+        padding: 4.5rem 5rem;
+    }
+</style>
