@@ -1,5 +1,5 @@
 <template>
-    <RouterLink to="/" class="common-land-card-component">
+    <RouterLink :to="'land/'+land._id" class="common-land-card-component">
         <img
             class="card-img"
             :src="land.thumbs[0]" alt="img" />
