@@ -1,6 +1,6 @@
 <template>
      <button
-        :type="'submit'"
+        type="submit"
         :class="{'full': full}"
         class="btn-common btn btn-primary">{{title}}</button>
 </template>
