@@ -1,10 +1,11 @@
 <template>
-    <form>
+    <form @submit="onSubmitHandler">
         <CommonInput
             :label="'Họ và tên'"
             :id="'user-fullName'"
             :type="'text'"
             :valid="validFullName"
+            ref="fullNameRef"
             @blur-event="fullNameBlur"/>
 
         <CommonInput
@@ -12,6 +13,7 @@
             :id="'user-email'"
             :type="'email'"
             :valid="validEmail"
+            ref="emailRef"
             @blur-event="emailBlur"/>
 
         <CommonInput
@@ -19,6 +21,7 @@
             :id="'user-password'"
             :type="'password'"
             :valid="validPass"
+            ref="passRef"
             @blur-event="passwordBlur"/>
 
         <CommonInput
@@ -26,6 +29,7 @@
             :id="'user-phone'"
             :type="'phone'"
             :valid="validPhone"
+            ref="phoneRef"
             @blur-event="phoneBlur"/>
 
         <CommonInput
@@ -33,11 +37,13 @@
             :id="'user-address'"
             :type="'text'"
             :valid="validAddress"
+            ref="addressRef"
             @blur-event="addressBlur"/>
 
         <CommonButton 
             :title="'Đăng ký'"
             :full="true"/>
+
         <p class="sugget">
             Bạn đã có tài khoản?
             <RouterLink to="/auth">Đăng nhập</RouterLink>
@@ -86,6 +92,36 @@
             },
             addressBlur(event) {
                 this.validAddress = blurAddress(event);
+            },
+            onSubmitHandler(event) {
+                event.preventDefault();
+                let inputFullName = this.$refs.fullNameRef.$el.querySelector("#user-fullName")
+                let inputEmail = this.$refs.emailRef.$el.querySelector("#user-email");
+                let inputPass = this.$refs.passRef.$el.querySelector("#user-password");
+                let inputPhone = this.$refs.phoneRef.$el.querySelector("#user-phone");
+                let inputAddress = this.$refs.addressRef.$el.querySelector("#user-address");
+
+                inputFullName.focus();
+                inputFullName.blur();
+
+                inputEmail.focus();
+                inputEmail.blur();
+
+                inputPass.focus();
+                inputPass.blur();
+
+                inputPhone.focus();
+                inputPhone.blur();
+
+                inputAddress.focus();
+                inputAddress.blur();
+
+                if(
+                    (this.validFullName.status && this.validEmail.status) &&
+                    (this.validPass.status && this.validPhone.status) && this.validAddress.status) {
+                        return null;
+                }
+
             }
         }
     }

@@ -72,15 +72,16 @@ const validReducer = (value, action) => {
                 let inforValid = valid(key, value);
     
                 if(!inforValid.status) {
+                    inforValid['value'] = value;
                     return inforValid;
                 }
             }
         }
         
-        return {status: true, message: ''};
+        return {status: true, message: '', value};
 
     } else {
-        return {status: true, message: ''};
+        return {status: true, message: '', value};
     }
 }
 
