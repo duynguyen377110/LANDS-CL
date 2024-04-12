@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-3">
                     <h1 class="mb-0">
-                        <RouterLink to="/">Lands</RouterLink>
+                        <RouterLink class="header-brand" to="/">Lands</RouterLink>
                     </h1>
                 </div>
                 <div class="col-9 d-flex align-items-center justify-content-between">
@@ -63,13 +63,20 @@
         min-height: 6rem;
     }
 
+    .header-brand {
+        font-size: 2.5rem;
+        font-weight: 600;
+        letter-spacing: .3px;
+        text-transform: uppercase;
+    }
+
     .header-list {
         gap: 1rem;
     }
 
     .header-list li a {
         color: var(--text-color)!important;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 600;
         letter-spacing: .3px;
         text-transform: capitalize;
