@@ -1,10 +1,11 @@
 <template>
-    <form>
+    <form @submit="onSubmit">
         <CommonInput
             :label="'E-mail'"
             :id="'user-email'"
             :type="'email'"
             :valid="validEmail"
+            ref="emailRef"
             @blur-event="emailBlur"/>
 
         <CommonInput
@@ -12,11 +13,13 @@
             :id="'user-password'"
             :type="'password'"
             :valid="validPass"
+            ref="passRef"
             @blur-event="passwordBlur"/>
 
-        <CommonButton 
+        <CommonButton
             :title="'Đăng nhập'"
             :full="true"/>
+
         <p class="sugget">
             Bạn chưa có tài khoản?
             <RouterLink to="/auth/signup">Đăng ký</RouterLink>
@@ -50,6 +53,22 @@
             },
             passwordBlur(event) {
                 this.validPass = blurPass(event);
+            },
+            onSubmit(event) {
+                event.preventDefault();
+
+                let inputEmail = this.$refs.emailRef.$el.querySelector("#user-email");
+                let inputPass = this.$refs.passRef.$el.querySelector("#user-password");
+
+                inputEmail.focus();
+                inputEmail.blur();
+
+                inputPass.focus();
+                inputPass.blur();
+
+                if(this.validEmail.status && this.validPass.status) {
+                    return null
+                }
             }
         }
     }
