@@ -14,6 +14,56 @@
                     </carousel>
                 </div>
             </div>
+
+            <div class="land-detail-infor">
+                <h3 class="address">
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{land.address}}
+                </h3>
+                <h2 class="product-owner">{{ land.productOwner }}</h2>
+            </div>
+
+            <div class="land-detail-desc">
+                <h2 class="desc-title">
+                    <i class="fa-solid fa-tags"></i>
+                    Thông tin chi tiết
+                </h2>
+
+                <table class="desc-table">
+                    <thead>
+                        <tr>
+                            <th class="th-first">Tiêu đề</th>
+                            <th>Nội dung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Loại hình</td>
+                            <td>{{land.categories.title}}</td>
+                        </tr>
+                        <tr>
+                            <td>Liên hệ</td>
+                            <td>{{land.contact}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Diện tích</td>
+                            <td>{{land.landArea}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Ngày đăng tin</td>
+                            <td>{{new Date(land.createdAt).toLocaleDateString()}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Giá</td>
+                            <td>Thoả thuận khách</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
@@ -30,7 +80,13 @@
         data() {
             return {
                 land: {
-                    thumbs: []
+                    address: '',
+                    categories: {
+                        title: ''
+                    },
+                    contact: '',
+                    thumbs: [],
+                    productOwner: ''
                 },
                 thumb: 'https://placehold.co/1200x500?text=_',
             }
@@ -55,6 +111,7 @@
                 let { status, metadata } = await res.json();
                 if(status) {
                     let { product: land } = metadata;
+                    console.log(land);
                    this.land = land;
                    this.thumb = land.thumbs[0];
                 }
@@ -71,6 +128,10 @@
         padding: 4.5rem 0rem;
         width: 100%;
     }
+    /** THUMB */
+    .land-detail-thumb {
+        margin-bottom: 1.5rem;
+    }
     .land-detail-thumb img {
         height: 50rem;
         width: 100%;
@@ -80,5 +141,40 @@
     }
     .land-thumb-item {
         height: 10rem!important;
+    }
+
+    /** INFOR */
+    .land-detail-infor {
+        border-bottom: 1px solid #dddddd;
+        margin-bottom: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+    .address {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .product-owner {
+        color: var(--first-color);
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+
+    /** DESC */
+    .desc-title {
+        font-size: 1.5rem;
+    }
+    .desc-table {
+        border-collapse: collapse;
+        font-size: 1.4rem;
+        width: 100%;
+    }
+    .th-first {
+        width: 20rem;
+    }
+    .desc-table, td, th {
+        border: 1px solid #dddddd;
+        padding: 1rem;
     }
 </style>
