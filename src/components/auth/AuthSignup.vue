@@ -119,7 +119,8 @@
                 if(
                     (this.validFullName.status && this.validEmail.status) &&
                     (this.validPass.status && this.validPhone.status) && this.validAddress.status) {
-                        return null;
+                        this.$router.push("/");
+
                 }
 
             }
