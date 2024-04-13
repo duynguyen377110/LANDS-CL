@@ -87,7 +87,7 @@
 
 <style scoped>
     .section-lands-product {
-        background-color: #f8f8f8;
+        background-color: var(--bg-02);
         padding: 4.5rem 5rem;
     }
 </style>
