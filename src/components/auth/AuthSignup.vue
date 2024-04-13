@@ -55,6 +55,11 @@
     import CommonInput from "../common/CommonInput.vue";
     import CommonButton from "../common/commonButton.vue";
     import useValidator from "../../hook/hook-validator";
+    import userHttp from "../../hook/hook-http.js";
+    import environment from "../../../environment.js";
+
+    let url = `${environment.url}${environment.access.signup}`;
+    let { http }= userHttp(url);
 
     const blurFullName = useValidator(['required']);
     const blurEmail = useValidator(['required', 'email']);
@@ -119,7 +124,22 @@
                 if(
                     (this.validFullName.status && this.validEmail.status) &&
                     (this.validPass.status && this.validPhone.status) && this.validAddress.status) {
-                        this.$router.push("/");
+                        this.$store.commit("toggleLoader");
+                         let payload = {
+                            fullName: this.validFullName.value,
+                            email: this.validEmail.value,
+                            password: this.validPass.value,
+                            phone: this.validPhone.value,
+                            address: this.validAddress.value
+                         }
+
+                        http({method:"POST", payload}, (information) => {
+                            let { status } = information;
+                            this.$store.commit("toggleLoader");
+                            if(status) {
+                                this.$router.push("/auth");
+                            }
+                        })
 
                 }
 
