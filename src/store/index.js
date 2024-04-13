@@ -17,7 +17,7 @@ export default createStore({
           amount: 0,
           currentPage: 0,
           elementsTab: [],
-          quantityElementOnPage: 2,
+          quantityElementOnPage: 15,
         }
       }
     },
