@@ -12,6 +12,7 @@
 <style>
   :root {
     --bg-01: #e9e9e9;
+    --bg-02: #f8f8f8;
     --first-color: #0166d3;
     --text-color: #2e4358;
   }
