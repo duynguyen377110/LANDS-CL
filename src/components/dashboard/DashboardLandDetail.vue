@@ -69,6 +69,7 @@
 </template>
 
 <script>
+    import useHttp from "../../hook/hook-http.js"
     import environment from "../../../environment.js";
     import { Carousel, Slide } from 'vue3-carousel';
 
@@ -98,23 +99,18 @@
             async getProduct() {
                 let { id } = this.$route.params;
                 let url = `${environment.url}${environment.product.root}/${id}`;
-                
-                let res = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json"
+                const { http } = useHttp(url);
+
+                this.$store.commit("toggleLoader");
+                http({method: 'GET'}, (res) => {
+                    const { status, metadata } = res;
+                    if(status) {
+                        let { product: land } = metadata;
+                        this.land = land;
+                        this.thumb = land.thumbs[0];
                     }
+                    this.$store.commit("toggleLoader");
                 })
-
-                if(!res.ok) throw new Error("Call api success");
-
-                let { status, metadata } = await res.json();
-                if(status) {
-                    let { product: land } = metadata;
-                    console.log(land);
-                   this.land = land;
-                   this.thumb = land.thumbs[0];
-                }
             },
             onChangeThumb(event) {
                 this.thumb = event;

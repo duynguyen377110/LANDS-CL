@@ -47,9 +47,11 @@
 
 <script>
     import CommonLandCard from "../common/CommonLandCard.vue";
+    import useHttp from "../../hook/hook-http.js";
     import environment from "../../../environment.js";
 
     let url = `${environment.url}${environment.product.all}`;
+    const { http } = useHttp(url);
 
     export default {
         name: "dashboard-main",
@@ -62,24 +64,20 @@
             }
         },
         mounted() {
-            this.callApi();
+            this.getProduct();
         },
         methods: {
-            async callApi() {
-                let res = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json"
+            async getProduct() {
+                this.$store.commit("toggleLoader");
+                http({method: 'GET'}, (res) => {
+                    const { status, metadata } = res;
+                    if(status) {
+                        let { products } = metadata;
+                        this.lands = products;
                     }
+                    this.$store.commit("toggleLoader");
                 })
-
-                if(!res.ok) throw new Error("Call api success");
-
-                let { status, metadata } = await res.json();
-                if(status) {
-                    let { products } = metadata;
-                    this.lands = products;
-                }
+                
             }
         },
     }
