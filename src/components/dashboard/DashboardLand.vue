@@ -9,8 +9,10 @@
                 </div>
             </div>
         </div>
-
-        <CommonPagination @click-event="onClick" />
+        
+        <CommonPagination
+            v-if="$store.state.pagination.page.land.elementsTab.length > 1"
+            @click-event="onClick" />
     </div>
 </template>
 
@@ -50,6 +52,7 @@
                 })
             },
             async initGetProduct() {
+                 this.$store.commit("toggleLoader");
                 let start = this.$store.state.pagination.page.land.currentPage;
                 let limit = this.$store.state.pagination.page.land.quantityElementOnPage;
                  let url = `${environment.url}${environment.product.root}/${start}/${limit}`;
@@ -61,11 +64,13 @@
                         let { products } = metadata;
                         this.lands = products;
                     }
+                     this.$store.commit("toggleLoader");
                 })
             },
             async onClick(event) {
+                 this.$store.commit("toggleLoader");
                 this.$store.commit("updatePagiCurrentTab", event);
-                
+
                 let start = this.$store.state.pagination.page.land.currentPage;
                 let limit = this.$store.state.pagination.page.land.quantityElementOnPage;
                  let url = `${environment.url}${environment.product.root}/${start}/${limit}`;
@@ -77,6 +82,7 @@
                         let { products } = metadata;
                         this.lands = products;
                     }
+                     this.$store.commit("toggleLoader");
                 })
             }
         },
