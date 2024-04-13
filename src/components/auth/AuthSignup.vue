@@ -53,7 +53,7 @@
 
 <script>
     import CommonInput from "../common/CommonInput.vue";
-    import CommonButton from "../common/commonButton.vue";
+    import CommonButton from "../common/CommonButton.vue";
     import useValidator from "../../hook/hook-validator";
 
     const blurFullName = useValidator(['required']);

@@ -10,11 +10,15 @@ export default createStore({
       address: '',
       accessToken: '',
       refreshToken: ''
-    }
+    },
+    loader: false
   },
   getters: {
   },
   mutations: {
+    toggleLoader(state) {
+      state.loader = !state.loader;
+    }
   },
   actions: {
   },

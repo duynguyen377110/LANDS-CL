@@ -1,11 +1,17 @@
 <template>
   <router-view />
+  <CommonLoader v-if="$store.state.loader"/>
+  <h2>{{$store.state.loader}}</h2>
 </template>
 
 <script>
+  import CommonLoader from "./components/common/CommonLoader.vue";
+
   export default {
     name: 'App',
-    components: { }
+    components: {
+      CommonLoader
+    }
   }
 </script>
 
@@ -13,6 +19,7 @@
   :root {
     --bg-01: #e9e9e9;
     --bg-02: #f8f8f8;
+    --bg-opacity: #f5f5f559;
     --first-color: #0166d3;
     --text-color: #2e4358;
   }
