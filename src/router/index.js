@@ -12,8 +12,13 @@ const routes = [
             },
             {
                 path: 'land/:id',
-                name: 'land-detail',
+                name: 'dashboard-land-detail',
                 component: () => import("../components/dashboard/DashboardLandDetail.vue")
+            },
+            {
+                path: 'land',
+                name: 'dashboard-land',
+                component: () => import("../components/dashboard/DashboardLand.vue")
             },
             {
                 path: "about",

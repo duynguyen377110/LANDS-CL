@@ -10,6 +10,9 @@
                 <div class="col-9 d-flex align-items-center justify-content-between">
                     <ul class="header-list list-unstyled d-flex align-items-center p-0 mb-0">
                         <li>
+                            <RouterLink to="/land">Bất động sản</RouterLink>
+                        </li>
+                        <li>
                             <RouterLink to="/about">Giới thiệu</RouterLink>
                         </li>
                     </ul>
