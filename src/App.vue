@@ -1,7 +1,6 @@
 <template>
   <router-view />
   <CommonLoader v-if="$store.state.loader"/>
-  <h2>{{$store.state.loader}}</h2>
 </template>
 
 <script>
