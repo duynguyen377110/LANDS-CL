@@ -1,0 +1,91 @@
+<template>
+    <div class="dashboard-land-component">
+        <div class="container">
+            <div class="row align-items-stretch">
+                <div
+                    class="col-12 col-md-4 col-lg-3 mb-5"
+                    v-for="(land) in lands" :key="land._id">
+                    <CommonLandCard :land="land"/>
+                </div>
+            </div>
+        </div>
+
+        <CommonPagination @click-event="onClick" />
+    </div>
+</template>
+
+<script>
+    import useHttp from "../../hook/hook-http.js";
+    import environment from "../../../environment.js";
+    import CommonLandCard from "../common/CommonLandCard.vue";
+    import CommonPagination from "../common/CommonPagination.vue";
+
+    export default {
+        name: 'dashboard-land',
+        components: {
+            CommonLandCard,
+            CommonPagination
+        },
+        data() {
+            return {
+                lands: []
+            }
+        },
+        created() {
+            this.getAmount();
+        },
+        mounted() {
+            this.initGetProduct();
+        },
+        methods: {
+            async getAmount() {
+                let url = `${environment.url}${environment.product.amount}`;
+                const { http } = useHttp(url);
+
+                http({method: 'GET'}, (res) => {
+                    const { status, metadata } = res;
+                    if(status) {
+                        this.$store.commit("setPagiAmountLand", metadata);
+                    }
+                })
+            },
+            async initGetProduct() {
+                let start = this.$store.state.pagination.page.land.currentPage;
+                let limit = this.$store.state.pagination.page.land.quantityElementOnPage;
+                 let url = `${environment.url}${environment.product.root}/${start}/${limit}`;
+                const { http } = useHttp(url);
+
+                http({method: 'GET'}, (res) => {
+                    const { status, metadata } = res;
+                    if(status) {
+                        let { products } = metadata;
+                        this.lands = products;
+                    }
+                })
+            },
+            async onClick(event) {
+                this.$store.commit("updatePagiCurrentTab", event);
+                
+                let start = this.$store.state.pagination.page.land.currentPage;
+                let limit = this.$store.state.pagination.page.land.quantityElementOnPage;
+                 let url = `${environment.url}${environment.product.root}/${start}/${limit}`;
+                const { http } = useHttp(url);
+
+                http({method: 'GET'}, (res) => {
+                    const { status, metadata } = res;
+                    if(status) {
+                        let { products } = metadata;
+                        this.lands = products;
+                    }
+                })
+            }
+        },
+    }
+</script>
+
+<style scoped>
+    .dashboard-land-component {
+        padding: 4.5rem 0rem;
+        width: 100%;
+    }
+</style>
