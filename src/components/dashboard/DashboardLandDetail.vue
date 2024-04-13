@@ -1,6 +1,8 @@
 <template>
     <div class="dashboard-land-detail-component">
         <div class="container">
+            <CommonBreadcrumb />
+
             <div class="land-detail-thumb">
                 <img :src="thumb" alt="land thumb"/>
                 <div>
@@ -71,12 +73,15 @@
 <script>
     import useHttp from "../../hook/hook-http.js"
     import environment from "../../../environment.js";
+    import CommonBreadcrumb from "../common/CommonBreadCrumb.vue";
     import { Carousel, Slide } from 'vue3-carousel';
 
     export default {
         name: 'dashboard-land-detail',
         components: {
-            Carousel, Slide
+            Carousel,
+            Slide,
+            CommonBreadcrumb
         },
         data() {
             return {
@@ -121,7 +126,7 @@
 
 <style scoped>
     .dashboard-land-detail-component {
-        padding: 4.5rem 0rem;
+        padding: 0rem 0rem 4.5rem 0rem;
         width: 100%;
     }
     /** THUMB */

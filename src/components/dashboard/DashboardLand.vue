@@ -1,6 +1,7 @@
 <template>
     <div class="dashboard-land-component">
         <div class="container">
+            <CommonBreadcrumb />
             <div class="row align-items-stretch">
                 <div
                     class="col-12 col-md-4 col-lg-3 mb-5"
@@ -19,6 +20,7 @@
 <script>
     import useHttp from "../../hook/hook-http.js";
     import environment from "../../../environment.js";
+    import CommonBreadcrumb from "../common/CommonBreadCrumb.vue";
     import CommonLandCard from "../common/CommonLandCard.vue";
     import CommonPagination from "../common/CommonPagination.vue";
 
@@ -26,7 +28,8 @@
         name: 'dashboard-land',
         components: {
             CommonLandCard,
-            CommonPagination
+            CommonPagination,
+            CommonBreadcrumb
         },
         data() {
             return {
@@ -91,7 +94,7 @@
 
 <style scoped>
     .dashboard-land-component {
-        padding: 4.5rem 0rem;
+        padding: 0rem 0rem 4.5rem 0rem;
         width: 100%;
     }
 </style>
