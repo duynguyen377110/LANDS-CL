@@ -29,7 +29,7 @@
 
 <script>
     import CommonInput from "../common/CommonInput.vue";
-    import CommonButton from "../common/CommonButton.vue";
+    import CommonButton from "../common/commonButton.vue";
     import useValidator from "../../hook/hook-validator";
 
     const blurEmail = useValidator(['required', 'email']);
