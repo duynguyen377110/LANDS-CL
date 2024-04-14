@@ -31,6 +31,11 @@
     import CommonInput from "../common/CommonInput.vue";
     import CommonButton from "../common/commonButton.vue";
     import useValidator from "../../hook/hook-validator";
+    import userHttp from "../../hook/hook-http.js";
+    import environment from "../../../environment.js";
+
+    let url = `${environment.url}${environment.access.signin}`;
+    let { http }= userHttp(url);
 
     const blurEmail = useValidator(['required', 'email']);
     const blurPass = useValidator(['required', 'password']);
@@ -67,7 +72,21 @@
                 inputPass.blur();
 
                 if(this.validEmail.status && this.validPass.status) {
-                    this.$router.push("/");
+                    this.$store.commit("toggleLoader");
+                    
+                    let payload = {
+                        email: this.validEmail.value,
+                        password: this.validPass.value,
+                    }
+
+                    http({method:"POST", payload}, (information) => {
+                        let { status, metadata } = information;
+                        this.$store.commit("toggleLoader");
+                        if(status) {
+                            this.$store.commit("authSignin", metadata);
+                            this.$router.push("/");
+                        }
+                    })
                 }
             }
         }
