@@ -39,6 +39,53 @@ export default createStore({
     },
     toggleLoader(state) {
       state.loader = !state.loader;
+    },
+    authSignup(state, action) {
+      
+      let { access } = action;
+      let payload = {
+        user: access.user._id,
+        email: access.user.email,
+        phone: access.user.phone,
+        apiKey: '',
+        address: access.user.address,
+        accessToken: access.accessToken,
+        refreshToken: access.refreshToken,
+      }
+
+      localStorage.setItem("user", JSON.stringify(payload));
+
+      state.auth.authId = access.user._id;
+      state.auth.email = access.user.email;
+      state.auth.phone = access.user.phone;
+      state.auth.apiKey = '';
+      state.auth.address = access.user.address;
+      state.auth.accessToken = access.accessToken;
+      state.auth.refreshToken = access.refreshToken;
+    },
+    authSignout(state) {
+      localStorage.clear();
+      state.auth.authId = "";
+      state.auth.email = "";
+      state.auth.phone = "";
+      state.auth.apiKey = '';
+      state.auth.address = "";
+      state.auth.accessToken = "";
+      state.auth.refreshToken = "";
+    },
+    authReload(state) {
+      let client = localStorage.getItem("user");
+      if(client) {
+        client = JSON.parse(client);
+
+        state.auth.authId = client.user;
+        state.auth.email = client.email;
+        state.auth.phone = client.phone;
+        state.auth.apiKey = '';
+        state.auth.address = client.address;
+        state.auth.accessToken = client.accessToken;
+        state.auth.refreshToken = client.refreshToken;
+      }
     }
   },
   actions: {

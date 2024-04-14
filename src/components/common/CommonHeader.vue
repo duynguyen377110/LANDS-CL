@@ -36,12 +36,19 @@
                         </ul>
 
                         <li v-else>
+                            <h2
+                                v-if="$store.state.auth.email"
+                                class="header-auth-email">
+                                {{$store.state.auth?.email}}
+                            </h2>
+
                             <button
+                                @click="onSignout"
                                 class="btn-signout"
                                 type="button">
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                     Đăng xuất
-                                </button>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -51,9 +58,28 @@
 </template>
 
 <script>
+    import userHttp from "../../hook/hook-http.js";
+    import environment from "../../../environment.js";
+
     export default {
         name: 'common-header',
-        components: {}
+        components: {},
+        methods: {
+            async onSignout() {
+                this.$store.commit("toggleLoader");
+                let url = `${environment.url}${environment.access.signout}`;
+
+                let { http } = userHttp(url);
+                http({method: 'POST', payload: {email: this.$store.state.auth.email}}, (information) => {
+                    let { status } = information;
+
+                    if(status) {
+                        this.$store.commit("authSignout");
+                    }
+                    this.$store.commit("toggleLoader");
+                })
+            }
+        }
     }
 </script>
 
@@ -75,6 +101,19 @@
 
     .header-list {
         gap: 1rem;
+    }
+
+    .header-list li {
+        display: flex;
+        align-items: center;
+    }
+
+    .header-auth-email {
+        font-size: 1.5rem;
+        margin-bottom: 0px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100px;
     }
 
     .header-list li a {
