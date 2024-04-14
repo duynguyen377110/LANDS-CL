@@ -63,6 +63,20 @@ export default createStore({
       state.auth.accessToken = access.accessToken;
       state.auth.refreshToken = access.refreshToken;
     },
+    authSignin(state, action){
+      let {accessToken, address ,email, phone, refreshToken, userId} = action;
+      let payload = { user: userId, email, phone, apiKey: '', address, accessToken, refreshToken };
+
+      localStorage.setItem("user", JSON.stringify(payload));
+
+      state.auth.authId = userId;
+      state.auth.email = email;
+      state.auth.phone = phone;
+      state.auth.apiKey = '';
+      state.auth.address = address;
+      state.auth.accessToken = accessToken;
+      state.auth.refreshToken = refreshToken;
+    },
     authSignout(state) {
       localStorage.clear();
       state.auth.authId = "";
