@@ -9,7 +9,8 @@ export default createStore({
       apiKey: '',
       address: '',
       accessToken: '',
-      refreshToken: ''
+      refreshToken: '',
+      slug: '',
     },
     pagination: {
       page: {
@@ -51,6 +52,7 @@ export default createStore({
         address: access.user.address,
         accessToken: access.accessToken,
         refreshToken: access.refreshToken,
+        slug: access.slug
       }
 
       localStorage.setItem("user", JSON.stringify(payload));
@@ -62,10 +64,15 @@ export default createStore({
       state.auth.address = access.user.address;
       state.auth.accessToken = access.accessToken;
       state.auth.refreshToken = access.refreshToken;
+      state.auth.slug = access.slug;
     },
-    authSignin(state, action){
-      let {accessToken, address ,email, phone, refreshToken, userId} = action;
-      let payload = { user: userId, email, phone, apiKey: '', address, accessToken, refreshToken };
+    authSignin(state, action) {
+      let {accessToken, address, email, phone, refreshToken, userId, slug} = action;
+      let payload = {
+          user: userId,
+          email, phone,
+          apiKey: '', address,
+          accessToken, refreshToken, slug };
 
       localStorage.setItem("user", JSON.stringify(payload));
 
@@ -76,6 +83,7 @@ export default createStore({
       state.auth.address = address;
       state.auth.accessToken = accessToken;
       state.auth.refreshToken = refreshToken;
+      state.auth.slug = slug;
     },
     authSignout(state) {
       localStorage.clear();
@@ -86,6 +94,7 @@ export default createStore({
       state.auth.address = "";
       state.auth.accessToken = "";
       state.auth.refreshToken = "";
+      state.auth.slug = "";
     },
     authReload(state) {
       let client = localStorage.getItem("user");
@@ -99,6 +108,7 @@ export default createStore({
         state.auth.address = client.address;
         state.auth.accessToken = client.accessToken;
         state.auth.refreshToken = client.refreshToken;
+        state.auth.slug = "";
       }
     }
   },
