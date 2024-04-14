@@ -134,9 +134,10 @@
                          }
 
                         http({method:"POST", payload}, (information) => {
-                            let { status } = information;
+                            let { status, metadata } = information;
                             this.$store.commit("toggleLoader");
                             if(status) {
+                                console.log(metadata);
                                 this.$router.push("/auth");
                             }
                         })
