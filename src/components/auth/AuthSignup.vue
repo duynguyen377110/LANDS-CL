@@ -137,8 +137,8 @@
                             let { status, metadata } = information;
                             this.$store.commit("toggleLoader");
                             if(status) {
-                                console.log(metadata);
-                                this.$router.push("/auth");
+                                this.$store.commit("authSignup", metadata);
+                                this.$router.push("/");
                             }
                         })
 

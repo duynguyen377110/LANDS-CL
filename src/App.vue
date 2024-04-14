@@ -10,6 +10,11 @@
     name: 'App',
     components: {
       CommonLoader
+    },
+    mounted() {
+      if (!this.$store.state.auth.accessToken) {
+        this.$store.commit("authReload");
+      }
     }
   }
 </script>

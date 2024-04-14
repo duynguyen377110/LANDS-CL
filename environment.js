@@ -3,6 +3,7 @@ const environment = {
         url: "http://localhost:8083/api/v1/common/",
         access: {
             signup: "access/signup",
+            signout: "access/signout",
         },
         product: {
             root: 'product',
@@ -14,6 +15,7 @@ const environment = {
         url: "https://lands-be.onrender.com/api/v1/common/",
         access: {
             signup: "access/signup",
+            signout: "access/signout",
         },
         product: {
             root: 'product',
