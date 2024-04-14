@@ -28,7 +28,7 @@
     .common-land-card-component {
         background-color: #ffffff;
         border-radius: 5px;
-        box-shadow: 6px 5px 5px #eaeaea;
+        box-shadow: 0px 0px 5px 5px #eaeaea;
         display: block;
         height: 100%;
     }
