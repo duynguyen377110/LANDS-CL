@@ -27,4 +27,4 @@ const environment = {
     }
 }
 
-export default environment['pro'];
+export default environment['dev'];

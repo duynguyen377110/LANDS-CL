@@ -22,6 +22,10 @@ export default createStore({
         }
       }
     },
+    warning: {
+      status: false,
+      message: ''
+    },
     loader: false
   },
   getters: {
@@ -92,6 +96,15 @@ export default createStore({
         client = JSON.parse(client);
         state.auth = {...client};
       }
+    },
+    openWarning(state, action) {
+      let { message } = action;
+      state.warning.status = true;
+      state.warning.message = message;
+    },
+    closeWarning(state) {
+      state.warning.status = false;
+      state.warning.message = "";
     }
   },
   actions: {
