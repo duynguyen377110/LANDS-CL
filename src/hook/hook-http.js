@@ -10,7 +10,11 @@ const useHttp = (url = '') => {
                 body: JSON.stringify(infor.payload)
             })
 
-            if(!res.ok) throw new Error("Request unsuccess");
+            if(!res.ok) {
+                let { message } = await res.json();
+                throw new Error(message);
+            }
+            
             callback(await res.json());
 
         } catch (error) {

@@ -1,15 +1,18 @@
 <template>
   <router-view />
   <CommonLoader v-if="$store.state.loader"/>
+  <CommonWarning v-if="$store.state.warning.status"/>
 </template>
 
 <script>
   import CommonLoader from "./components/common/CommonLoader.vue";
+  import CommonWarning from "./components/common/CommonWaring.vue";
 
   export default {
     name: 'App',
     components: {
-      CommonLoader
+      CommonLoader,
+      CommonWarning
     },
     mounted() {
       if (!this.$store.state.auth.accessToken) {
@@ -26,6 +29,7 @@
     --bg-opacity: #f5f5f559;
     --first-color: #0166d3;
     --text-color: #2e4358;
+    --warning-color: #fdc526;
   }
 
   html, body {
