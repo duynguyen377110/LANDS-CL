@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     auth: {
-      authId: '',
+      id: '',
       email: '',
       phone: '',
       apiKey: '',
@@ -45,7 +45,7 @@ export default createStore({
       
       let { access } = action;
       let payload = {
-        user: access.user._id,
+        id: access.user._id,
         email: access.user.email,
         phone: access.user.phone,
         apiKey: '',
@@ -55,39 +55,29 @@ export default createStore({
         slug: access.slug
       }
 
-      localStorage.setItem("user", JSON.stringify(payload));
-
-      state.auth.authId = access.user._id;
-      state.auth.email = access.user.email;
-      state.auth.phone = access.user.phone;
-      state.auth.apiKey = '';
-      state.auth.address = access.user.address;
-      state.auth.accessToken = access.accessToken;
-      state.auth.refreshToken = access.refreshToken;
-      state.auth.slug = access.slug;
+      localStorage.setItem("user", JSON.stringify({...payload}));
+      state.auth = {...payload};
     },
     authSignin(state, action) {
-      let {accessToken, address, email, phone, refreshToken, userId, slug} = action;
+      let { access } = action;
+
       let payload = {
-          user: userId,
-          email, phone,
-          apiKey: '', address,
-          accessToken, refreshToken, slug };
+        apiKey: '',
+        id: access.user._id,
+        address: access.user.address,
+        email: access.user.email,
+        phone: access.user.email,
+        accessToken: access.accessToken,
+        refreshToken: access.refreshToken,
+        slug: access.slug
+    }
 
-      localStorage.setItem("user", JSON.stringify(payload));
-
-      state.auth.authId = userId;
-      state.auth.email = email;
-      state.auth.phone = phone;
-      state.auth.apiKey = '';
-      state.auth.address = address;
-      state.auth.accessToken = accessToken;
-      state.auth.refreshToken = refreshToken;
-      state.auth.slug = slug;
+      localStorage.setItem("user", JSON.stringify({...payload}));
+      state.auth = {...payload};
     },
     authSignout(state) {
       localStorage.clear();
-      state.auth.authId = "";
+      state.auth.id = "";
       state.auth.email = "";
       state.auth.phone = "";
       state.auth.apiKey = '';
@@ -100,15 +90,7 @@ export default createStore({
       let client = localStorage.getItem("user");
       if(client) {
         client = JSON.parse(client);
-
-        state.auth.authId = client.user;
-        state.auth.email = client.email;
-        state.auth.phone = client.phone;
-        state.auth.apiKey = '';
-        state.auth.address = client.address;
-        state.auth.accessToken = client.accessToken;
-        state.auth.refreshToken = client.refreshToken;
-        state.auth.slug = "";
+        state.auth = {...client};
       }
     }
   },
