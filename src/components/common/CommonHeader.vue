@@ -171,16 +171,22 @@
     .header-tab-left span:before, .header-tab-left span:after {
         background-color: var(--first-color);
         content: "";
-        left: 0px;
+        right: 0px;
         height: .5rem;
         position: absolute;
+        transition: all .5s ease;
         top: 0px;
-        width: 100%;
+        width: 80%;
     }
 
     .header-tab-left span:after {
         bottom: 0px;
         top: unset;
+    }
+
+    .header-tab-left.active span:before, .header-tab-left.active span:after {
+        left: 0px;
+        right: unset;
     }
 </style>
 
