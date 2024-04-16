@@ -108,6 +108,7 @@
     }
     .header-tab-left-wrapper {
         background-color: white;
+        box-shadow: 0px 0px 3px 0px #8181814a;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -147,12 +148,14 @@
         width: 100%;
     }
     .header-tab-left-user {
+        background-color: #efefef;
         color: var(--first-color);
         display: flex;
         align-items: center;
         gap: 1rem;
         font-size: 1.3rem;
-        padding: 1rem 1.5rem;
+        margin-bottom: 0px;
+        padding: 2rem 1.5rem;
     }
 
     .header-tab-left-user span {
