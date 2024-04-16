@@ -2,7 +2,7 @@
     <footer class="footer-component">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4 mb-5">
                     <h2 class="footer-brand">
                         <span>Lands</span>
                         <span class="footer-brand-sub">Better home - Better life</span>
@@ -10,7 +10,7 @@
                     <p class="footer-desc">Kết nối với chúng tôi để nhận được ưu đãi và thông tin mới nhất</p>
                 </div>
 
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4 mb-5">
                     <h2 class="footer-title">Giới thiệu</h2>
                     <ul class="footer-list">
                         <li>
@@ -28,7 +28,7 @@
                     </ul>
                 </div>
 
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4 mb-5">
                     <h2 class="footer-title">Dự án</h2>
                     <ul class="footer-list">
                         <li>

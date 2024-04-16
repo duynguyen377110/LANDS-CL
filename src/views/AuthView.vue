@@ -40,7 +40,7 @@
         background-color: var(--bg-01);
         border-radius: 5px;
         padding: 2.5rem;
-        width: 60%;
+        width: 375px;
     }
     .auth-title {
         color: var(--first-color);

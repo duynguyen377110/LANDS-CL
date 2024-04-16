@@ -26,7 +26,10 @@ export default createStore({
       status: false,
       message: ''
     },
-    loader: false
+    loader: false,
+    tableft: {
+      status: false
+    }
   },
   getters: {
   },
@@ -105,6 +108,9 @@ export default createStore({
     closeWarning(state) {
       state.warning.status = false;
       state.warning.message = "";
+    },
+    toggleTabLeft(state) {
+      state.tableft.status = !state.tableft.status;
     }
   },
   actions: {
