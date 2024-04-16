@@ -88,4 +88,13 @@
         background-color: var(--bg-02);
         padding: 4.5rem 5rem;
     }
+
+    @media screen and (max-width: 768px) {
+        .carousel-item img {
+            height: 30rem;
+        }
+        .section-lands-product {
+            padding: 4.5rem 0rem;
+        }
+    }
 </style>

@@ -2,13 +2,13 @@
     <div class="common-header-component">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3">
+                <div class="col-5 col-md-3 d-flex align-items-center">
                     <h1 class="mb-0">
                         <RouterLink class="header-brand" to="/">Lands</RouterLink>
                     </h1>
                 </div>
-                <div class="col-9 d-flex align-items-center justify-content-between">
-                    <ul class="header-list list-unstyled d-flex align-items-center p-0 mb-0">
+                <div class="col-7 col-md-9 d-flex align-items-center justify-content-between">
+                    <ul class="header-list list-unstyled d-none d-md-flex align-items-center p-0 mb-0">
                         <li>
                             <RouterLink to="/land">Bất động sản</RouterLink>
                         </li>
@@ -17,7 +17,7 @@
                         </li>
                     </ul>
 
-                     <ul class="header-list list-unstyled d-flex align-items-center p-0 mb-0">
+                     <ul class="header-list list-unstyled d-none d-md-flex align-items-center p-0 mb-0">
                         <ul
                             class="header-list list-unstyled d-flex align-items-center p-0 mb-0"
                             v-if="$store.state.auth.email === ''">
@@ -51,6 +51,13 @@
                             </button>
                         </li>
                     </ul>
+
+                    <button
+                        @click="toggleTabLeft"
+                        :class="{'active': $store.state.tableft.status}"
+                        class="d-flex d-md-none header-tab-left">
+                        <span></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -78,6 +85,9 @@
                     }
                     this.$store.commit("toggleLoader");
                 })
+            },
+            toggleTabLeft() {
+               this.$store.commit("toggleTabLeft");
             }
         }
     }
@@ -130,6 +140,47 @@
         font-size: 1.5rem;
         font-weight: 600;
         outline: unset;
+    }
+
+    /**BUTTON TAB LEFT */
+    .header-tab-left {
+        background-color: white;
+        align-items: center;
+        justify-content: flex-start;
+        border: unset;
+        outline: unset;
+        height: 3rem;
+        margin-left: auto;
+        padding: 0px;
+        position: relative;
+        transition: all .5s ease;
+        width: 4rem;
+    }
+
+    .header-tab-left.active {
+        justify-content: flex-end;
+    }
+
+    .header-tab-left span {
+        background-color: var(--first-color);
+        display: flex;
+        height: .5rem;
+        width: 80%;
+    }
+
+    .header-tab-left span:before, .header-tab-left span:after {
+        background-color: var(--first-color);
+        content: "";
+        left: 0px;
+        height: .5rem;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+    }
+
+    .header-tab-left span:after {
+        bottom: 0px;
+        top: unset;
     }
 </style>
 
