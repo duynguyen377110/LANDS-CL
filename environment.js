@@ -10,6 +10,14 @@ const environment = {
             root: 'product',
             all: 'product/all',
             amount: 'product/amount'
+        },
+        flatform: {
+            android: {
+                v1: 'application/android/v1'
+            },
+            ios: {
+                v1: 'application/ios'
+            }
         }
     },
     pro: {
@@ -23,6 +31,14 @@ const environment = {
             root: 'product',
             all: 'product/all',
             amount: 'product/amount'
+        },
+        flatform: {
+            android: {
+                v1: 'application/android/v1'
+            },
+            ios: {
+                v1: 'application/ios'
+            }
         }
     }
 }
