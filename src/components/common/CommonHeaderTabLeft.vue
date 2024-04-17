@@ -10,14 +10,19 @@
                 <li>
                     <RouterLink
                         @click="closeTabLeft"
-                        active-class="active"
-                        to="/land" exact>Bất động sản</RouterLink>
+                        active-class="active" to="/about" exact>Giới thiệu</RouterLink>
                 </li>
 
                 <li>
                     <RouterLink
                         @click="closeTabLeft"
-                        active-class="active" to="/about" exact>Giới thiệu</RouterLink>
+                        active-class="active" to="/land" exact>Bất động sản</RouterLink>
+                </li>
+
+                <li>
+                    <RouterLink
+                        @click="closeTabLeft"
+                        active-class="active" to="/app">Ứng dụng</RouterLink>
                 </li>
 
                 <li v-if="!$store.state.auth.accessToken">
