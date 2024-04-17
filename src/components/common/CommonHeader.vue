@@ -10,10 +10,13 @@
                 <div class="col-7 col-md-9 d-flex align-items-center justify-content-between">
                     <ul class="header-list list-unstyled d-none d-md-flex align-items-center p-0 mb-0">
                         <li>
+                            <RouterLink to="/about">Giới thiệu</RouterLink>
+                        </li>
+                        <li>
                             <RouterLink to="/land">Bất động sản</RouterLink>
                         </li>
                         <li>
-                            <RouterLink to="/about">Giới thiệu</RouterLink>
+                            <RouterLink to="/app">Ứng dụng</RouterLink>
                         </li>
                     </ul>
 
@@ -104,7 +107,7 @@
 
     .header-brand {
         font-size: 2.5rem;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: .3px;
         text-transform: uppercase;
     }

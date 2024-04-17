@@ -42,12 +42,20 @@
                     }
                 }
 
+                if(path ===  'app') {
+                    return {
+                        path: 'app',
+                        slug: "Nền tảng"
+                    }
+                }
+
                 if(this.$route.params.id) {
                     return {
                         path: '',
                         slug: "Chi tiết"
                     };
                 }
+                
                 return {
                     path: '/',
                     slug: 'Trang chủ'
